@@ -1,0 +1,13 @@
+# To restore TOPAS to state GUI had on Wed Mar 22 10:06:08 2023
+
+includeFile = MainTxHead.txt
+
+d:Gr/ViewA/Phi = -179.652 deg
+d:Gr/ViewA/TargetPointX = -21.0937 mm
+d:Gr/ViewA/TargetPointY = 82.6719 mm
+d:Gr/ViewA/TargetPointZ = 5.7396 mm
+d:Gr/ViewA/Theta = 144.946 deg
+dc:Ge/Jaw/NegativeFieldSetting = -80 cm
+dc:Ge/Jaw/PositiveFieldSetting = 40 cm
+ic:So/ElectronSource/NumberOfHistoriesInRun = 100
+u:Gr/ViewA/Zoom = 2.43065
