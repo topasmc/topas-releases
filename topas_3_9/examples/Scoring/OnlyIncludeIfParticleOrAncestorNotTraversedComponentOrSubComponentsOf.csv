@@ -1,7 +1,0 @@
-# TOPAS Version: 3.9
-# Parameter File: Filters.txt
-# Results for scorer: OnlyIncludeIfParticleOrAncestorNotTraversedComponentOrSubComponentsOf
-# Filtered by: OnlyIncludeIfParticleOrAncestorNotTraversedComponentOrSubComponentsOf = 2 "World" "Foil"
-# Scored on surface: Box/ZPlusSurface
-# SurfaceTrackCount : Sum   
-0
