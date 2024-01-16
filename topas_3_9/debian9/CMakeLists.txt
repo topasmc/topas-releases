@@ -154,12 +154,12 @@ install (TARGETS topas RUNTIME DESTINATION bin)
 # LICENSE/README, headers, libraries, etc.
 # LICENSE & README
 install (FILES
-	forenduser/LICENSE.txt
-	forenduser/README.txt
-	forenduser/rundemos.csh
+	LICENSE.txt
+	README.txt
+	rundemos.csh
 	DESTINATION .)
 	
-install (FILES forenduser/Geant4Headers.zip DESTINATION .)
+install (FILES Geant4Headers.zip DESTINATION .)
 
 install (FILES patches/geant4_10_07_p03.patch DESTINATION .)
 
