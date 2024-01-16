@@ -154,9 +154,8 @@ install (TARGETS topas RUNTIME DESTINATION bin)
 # LICENSE/README, headers, libraries, etc.
 # LICENSE & README
 install (FILES
-	forenduser/LICENSE.txt
-	forenduser/README.txt
-	forenduser/rundemos.csh
+	LICENSE.txt
+	README.txt
 	DESTINATION .)
 
 # External (Geant4, GDCM, ...) libraries
