@@ -178,9 +178,4 @@ install (FILES
 include (TOPAS_InstallLibs)
 
 # External (Geant4, GDCM, ...) libraries
-include (TOPAS_InstallExternalLibs)
-
-# Examples
-if (NOT DEFINED TOPAS_INSTALL_EXAMPLES OR ${TOPAS_INSTALL_EXAMPLES})
-	include (TOPAS_InstallExamples)
-endif ()
+#include (TOPAS_InstallExternalLibs)
