@@ -161,8 +161,6 @@ install (FILES
 	
 install (FILES Geant4Headers.zip DESTINATION .)
 
-install (FILES patches/geant4_10_07_p03.patch DESTINATION .)
-
 # files for end user compiling
 install (FILES
 	topas.cc
