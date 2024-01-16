@@ -154,26 +154,10 @@ install (TARGETS topas RUNTIME DESTINATION bin)
 # LICENSE/README, headers, libraries, etc.
 # LICENSE & README
 install (FILES
-	LICENSE.txt
-	README.txt
-	rundemos.csh
+	forenduser/LICENSE.txt
+	forenduser/README.txt
+	forenduser/rundemos.csh
 	DESTINATION .)
-	
-install (FILES Geant4Headers.zip DESTINATION .)
-
-# files for end user compiling
-install (FILES
-	topas.cc
-	CMakeHandleExtensions.cmake
-	DESTINATION .)
-install (FILES
-	extensions/TsExtensionManager.cc.in
-	extensions/TsExtensionManager.hh.in
-	extensions/CMakeLists.txt.in
-	DESTINATION extensions)
-
-# TOPAS headers and libraries
-include (TOPAS_InstallLibs)
 
 # External (Geant4, GDCM, ...) libraries
 #include (TOPAS_InstallExternalLibs)
