@@ -12,6 +12,7 @@ message (STATUS "CMAKE_CXX_COMPILER_VERSION: " ${CMAKE_CXX_COMPILER_VERSION})
 
 # Set cmake module Path and load modules
 set (CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${CMAKE_MODULE_PATH})
+include (TOPAS_Options)
 include (TOPAS_BuildSettings)
 
 set (CMAKE_CXX_STANDARD 11)
