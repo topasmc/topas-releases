@@ -143,3 +143,43 @@ target_link_libraries (topas
 	${Geant4_Libs}
 	${Qt_Libs}
 )
+
+#
+# Target: install
+
+# executable
+install (TARGETS topas RUNTIME DESTINATION bin)
+
+# LICENSE/README, headers, libraries, etc.
+# LICENSE & README
+install (FILES
+	forenduser/LICENSE.txt
+	forenduser/README.txt
+	forenduser/rundemos.csh
+	DESTINATION .)
+	
+install (FILES forenduser/Geant4Headers.zip DESTINATION .)
+
+install (FILES patches/geant4_10_07_p03.patch DESTINATION .)
+
+# files for end user compiling
+install (FILES
+	topas.cc
+	CMakeHandleExtensions.cmake
+	DESTINATION .)
+install (FILES
+	extensions/TsExtensionManager.cc.in
+	extensions/TsExtensionManager.hh.in
+	extensions/CMakeLists.txt.in
+	DESTINATION extensions)
+
+# TOPAS headers and libraries
+include (TOPAS_InstallLibs)
+
+# External (Geant4, GDCM, ...) libraries
+include (TOPAS_InstallExternalLibs)
+
+# Examples
+if (NOT DEFINED TOPAS_INSTALL_EXAMPLES OR ${TOPAS_INSTALL_EXAMPLES})
+	include (TOPAS_InstallExamples)
+endif ()
