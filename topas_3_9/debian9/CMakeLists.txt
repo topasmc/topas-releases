@@ -1,30 +1,24 @@
 cmake_minimum_required (VERSION 3.8 FATAL_ERROR)
 
+if (CMAKE_VERSION VERSION_GREATER_EQUAL 3.17)
+	cmake_policy (SET CMP0100 NEW)
+endif ()
+
 project (topas)
+
+# Print compiler information
+message (STATUS "CMAKE_CXX_COMPILER_ID: " ${CMAKE_CXX_COMPILER_ID})
+message (STATUS "CMAKE_CXX_COMPILER_VERSION: " ${CMAKE_CXX_COMPILER_VERSION})
+
+# Set cmake module Path and load modules
+set (CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${CMAKE_MODULE_PATH})
+include (TOPAS_BuildSettings)
 
 set (CMAKE_CXX_STANDARD 11)
 set (CMAKE_CXX_STANDARD_REQUIRED ON)
 set (CMAKE_CXX_EXTENSIONS OFF)
 
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-set (CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${CMAKE_MODULE_PATH})
-
-message (STATUS "CMAKE_CXX_COMPILER_ID: " ${CMAKE_CXX_COMPILER_ID} )
-message (STATUS "CMAKE_CXX_COMPILER_VERSION: " ${CMAKE_CXX_COMPILER_VERSION} )
-
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang") # using GCC || CLANG
-	set (CMAKE_CXX_FLAGS_WARNINGS "-Wall -Wextra -Wpedantic")
-	if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-		set (CMAKE_CXX_FLAGS_WARNINGS "${CMAKE_CXX_FLAGS_WARNINGS} -Wmaybe-uninitialized")
-	endif ()
-	set (CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -fno-trapping-math -ftree-vectorize -fno-math-errno")
-	if (APPLE)
-		set (CMAKE_CXX_FLAGS_BASE "")
-	else ()
-		set (CMAKE_CXX_FLAGS_BASE "-Wl,--disable-new-dtags")
-	endif ()
-	set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS_BASE} ${CMAKE_CXX_FLAGS_WARNINGS} ${CMAKE_CXX_FLAGS_RELEASE} ${CMAKE_CXX_FLAGS}")
-endif()
 
 include (CMakeHandleExtensions.cmake)
 
@@ -157,6 +151,3 @@ install (FILES
 	LICENSE.txt
 	README.txt
 	DESTINATION .)
-
-# External (Geant4, GDCM, ...) libraries
-#include (TOPAS_InstallExternalLibs)
