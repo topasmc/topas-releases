@@ -65,3 +65,6 @@ install (FILES ${files} DESTINATION examples/UCSFETF)
 
 file (GLOB files "${CMAKE_CURRENT_SOURCE_DIR}/examples/VarianceReduction/*.txt")
 install (FILES ${files} DESTINATION examples/VarianceReduction)
+
+file (GLOB files "${CMAKE_CURRENT_SOURCE_DIR}/*.sh")
+install (FILES ${files} DESTINATION .)
