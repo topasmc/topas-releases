@@ -148,4 +148,5 @@ install (TARGETS topas RUNTIME DESTINATION bin)
 install (FILES
 	LICENSE.txt
 	README.txt
+	get_geant4_data.sh
 	DESTINATION .)
