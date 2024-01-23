@@ -143,11 +143,8 @@ target_link_libraries (topas
 #
 # Target: install
 
-# executable
 install (TARGETS topas RUNTIME DESTINATION bin)
 
-# LICENSE/README, headers, libraries, etc.
-# LICENSE & README
 install (FILES
 	LICENSE.txt
 	README.txt
