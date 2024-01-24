@@ -6,4 +6,4 @@ ls -la
 chmod +x get_geant4_data.sh
 ./get_geant4_data.sh
 
-#bin/topas $1
+bin/topas $1
