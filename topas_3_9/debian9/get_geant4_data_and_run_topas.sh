@@ -3,5 +3,6 @@ chmod +x get_geant4_data.sh
 ./get_geant4_data.sh
 
 export TOPAS_G4_DATA_DIR=~/G4Data
-
+ls ~
+ls ~/G4Data
 bin/topas $1
