@@ -36,6 +36,6 @@ RUN ls -la ../../extensions
 RUN cmake -DTOPAS_EXTENSIONS_DIR=../../extensions && \
     cmake --build .
 
-ENTRYPOINT ["sh", "get_g4data_and_run_topas.sh"]
+ENTRYPOINT ["sh", "get_geant4_data_and_run_topas.sh"]
 
 #CMD ["bin/topas", "examples/Basic/BatchJobShared.txt"]
