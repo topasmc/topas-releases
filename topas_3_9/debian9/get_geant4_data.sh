@@ -1,7 +1,7 @@
 #!/bin/bash
 
-mkdir ~/G4Data
-cd ~/G4Data
+mkdir G4Data
+cd G4Data
 wget -4nv https://geant4-data.web.cern.ch/geant4-data/datasets/G4NDL.4.6.tar.gz
 wget -4nv https://geant4-data.web.cern.ch/geant4-data/datasets/G4EMLOW.7.13.tar.gz
 wget -4nv https://geant4-data.web.cern.ch/geant4-data/datasets/G4PhotonEvaporation.5.7.tar.gz
