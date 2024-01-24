@@ -26,6 +26,3 @@ tar -zxf G4PII.1.3.tar.gz
 tar -zxf G4ENSDFSTATE.2.3.tar.gz
 tar -zxf G4RealSurface.2.2.tar.gz
 tar -zxf G4TENDL.1.3.2.tar.gz
-
-export TOPAS_G4_DATA_DIR=~/G4Data
-
