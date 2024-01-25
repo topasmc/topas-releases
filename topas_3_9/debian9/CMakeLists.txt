@@ -21,7 +21,7 @@ set (CMAKE_CXX_EXTENSIONS OFF)
 
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-include (CMakeHandleExtensions.cmake)
+include (TOPAS_HandleExtensions.cmake)
 
 include_directories (
 	${CMAKE_BINARY_DIR}
