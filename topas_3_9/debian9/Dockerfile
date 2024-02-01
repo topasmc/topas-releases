@@ -2,8 +2,6 @@
 
 FROM debian:latest
 
-ARG DEBIAN_FRONTEND=noninteractive
-
 RUN apt update -y && apt upgrade -y && apt install -y \
     libexpat1-dev \
     libgl1-mesa-dev \
