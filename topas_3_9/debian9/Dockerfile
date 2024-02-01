@@ -1,6 +1,6 @@
 # nBio docker build
 
-FROM ubuntu:20.04
+FROM debian:latest
 
 ARG DEBIAN_FRONTEND=noninteractive
 
