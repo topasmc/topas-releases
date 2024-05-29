@@ -5,4 +5,4 @@ export TOPAS_G4_DATA_DIR=G4Data
 mkdir -p topasio
 cp tapasio/TsUserParameters.txt . 2> /dev/null
 bin/topas $1
-cp -f * topasio/.
+cp -f *.* topasio/
