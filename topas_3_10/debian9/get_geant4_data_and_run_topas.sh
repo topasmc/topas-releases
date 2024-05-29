@@ -4,6 +4,7 @@ chmod +x get_geant4_data.sh
 pwd
 ls -la
 export TOPAS_G4_DATA_DIR=/tmp/topas_3_10/debian9/G4Data
+export TOPAS_HEADLESS_MODE=1
 mkdir -p /tmp/topasio
 cd /tmp/topasio
 ls -la
