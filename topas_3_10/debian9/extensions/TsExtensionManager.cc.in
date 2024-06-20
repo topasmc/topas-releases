@@ -29,7 +29,6 @@
 #include "TsExtensionManager.hh"
 
 #include "TsParameterManager.hh"
-#include "TsModularPhysicsList.hh"
 
 #include "TsVGenerator.hh"
 #include "TsVScorer.hh"
@@ -123,7 +122,7 @@ G4VUserPhysicsList* TsExtensionManager::InstantiatePhysicsList(TsParameterManage
 }
 
 
-VPhysicsCreator* TsExtensionManager::InstantiatePhysicsModule(TsParameterManager*, G4String)
+G4VPhysicsConstructor* TsExtensionManager::InstantiatePhysicsModule(TsParameterManager*, G4String)
 {
 	// Insertion point for Physics Modules
 	return 0;

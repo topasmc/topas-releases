@@ -31,7 +31,7 @@
 #define TsTopasConfig_hh
 
 #define TOPAS_VERSION_MAJOR 3 
-#define TOPAS_VERSION_MINOR 10 
+#define TOPAS_VERSION_MINOR 9 
 #define TOPAS_VERSION_PATCH 0 
 
 #define GEANT4_VERSION_MAJOR 10 

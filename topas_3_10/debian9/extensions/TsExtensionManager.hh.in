@@ -52,7 +52,6 @@ class TsVScorer;
 class TsVHistogram;
 class TsVNtuple;
 class TsVOutcomeModel;
-class VPhysicsCreator;
 class G4VPhysicalVolume;
 class G4VUserPhysicsList;
 class G4VPhysicsConstructor;
@@ -69,7 +68,7 @@ public:
 
 	TsVGeometryComponent* InstantiateComponent(TsParameterManager* pM, TsMaterialManager* mM, TsGeometryManager* gM,
 											   TsVGeometryComponent* pgc, G4VPhysicalVolume* pv, G4String childCompType, G4String childName);
-
+	
 	TsVImagingToMaterial* InstantiateImagingToMaterial(TsParameterManager* pM, TsVGeometryComponent* geometryComponent, std::vector<G4Material*>* materialList, G4String converterName);
 
 	TsVMagneticField* InstantiateMagneticField(TsParameterManager* pM, TsGeometryManager* gM,
@@ -97,8 +96,7 @@ public:
 
 	G4VUserPhysicsList* InstantiatePhysicsList(TsParameterManager* pM, G4String physicsListName);
 
-	// G4VPhysicsConstructor* InstantiatePhysicsModule(TsParameterManager* pM, G4String physicsModuleName);
-	VPhysicsCreator* InstantiatePhysicsModule(TsParameterManager*, G4String);
+	G4VPhysicsConstructor* InstantiatePhysicsModule(TsParameterManager* pM, G4String physicsModuleName);
 
 	void BeginSession(TsParameterManager* pM);
 	void BeginRun(TsParameterManager* pM);

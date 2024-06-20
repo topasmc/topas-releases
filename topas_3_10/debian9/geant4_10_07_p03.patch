@@ -1,6 +1,6 @@
 diff -ruN geant4.10.07.p03/source/geometry/solids/specific/src/G4TessellatedSolid.cc geant4.10.07.p03-patched/source/geometry/solids/specific/src/G4TessellatedSolid.cc
---- geant4.10.07.p03/source/geometry/solids/specific/src/G4TessellatedSolid.cc	2021-11-19 02:25:39
-+++ geant4.10.07.p03-patched/source/geometry/solids/specific/src/G4TessellatedSolid.cc	2022-08-19 16:37:41
+--- geant4.10.07.p03/source/geometry/solids/specific/src/G4TessellatedSolid.cc	2021-02-05 03:17:16.000000000 -0800
++++ geant4.10.07.p03-patched/source/geometry/solids/specific/src/G4TessellatedSolid.cc	2021-05-26 22:25:20.000000000 -0700
 @@ -1654,20 +1654,22 @@
                                            const G4ThreeVector& v)const
  {
@@ -56,8 +56,8 @@ diff -ruN geant4.10.07.p03/source/geometry/solids/specific/src/G4TessellatedSoli
  }
  
 diff -ruN geant4.10.07.p03/source/processes/electromagnetic/dna/management/include/G4ITFinder.icc geant4.10.07.p03-patched/source/processes/electromagnetic/dna/management/include/G4ITFinder.icc
---- geant4.10.07.p03/source/processes/electromagnetic/dna/management/include/G4ITFinder.icc	2021-11-19 02:25:39
-+++ geant4.10.07.p03-patched/source/processes/electromagnetic/dna/management/include/G4ITFinder.icc	2022-08-19 16:37:41
+--- geant4.10.07.p03/source/processes/electromagnetic/dna/management/include/G4ITFinder.icc	2021-02-05 03:17:16.000000000 -0800
++++ geant4.10.07.p03-patched/source/processes/electromagnetic/dna/management/include/G4ITFinder.icc	2021-05-26 21:51:21.000000000 -0700
 @@ -143,7 +143,8 @@
            "Bad request : no node found in the IT you are searching "
            "closest neighbourg for");
@@ -68,67 +68,9 @@ diff -ruN geant4.10.07.p03/source/processes/electromagnetic/dna/management/inclu
        return 0; // coverity
      }
  
-diff -ruN geant4.10.07.p03/source/processes/electromagnetic/dna/management/src/G4IT.cc geant4.10.07.p03-patched/source/processes/electromagnetic/dna/management/src/G4IT.cc
---- geant4.10.07.p03/source/processes/electromagnetic/dna/management/src/G4IT.cc	2021-11-19 02:25:39
-+++ geant4.10.07.p03-patched/source/processes/electromagnetic/dna/management/src/G4IT.cc	2022-08-19 16:38:39
-@@ -206,7 +206,8 @@
- 
- double G4IT::operator[](int i) const
- {
--  return fpTrack->GetPosition()[i];
-+  // avoid occassionally accessing nullptr directly
-+  return GetPosition()[i];
- }
- 
- //------------------------------------------------------------------------------
-diff -ruN geant4.10.07.p03/source/processes/electromagnetic/dna/models/src/G4DNAMolecularReaction.cc geant4.10.07.p03-patched/source/processes/electromagnetic/dna/models/src/G4DNAMolecularReaction.cc
---- geant4.10.07.p03/source/processes/electromagnetic/dna/models/src/G4DNAMolecularReaction.cc	2021-11-19 02:25:39
-+++ geant4.10.07.p03-patched/source/processes/electromagnetic/dna/models/src/G4DNAMolecularReaction.cc	2022-12-05 19:36:22
-@@ -142,27 +142,34 @@
-     }
- 
-     G4ITReactionPerTrackMap& reactionPerTrackMap = pReactionSet->GetReactionMap();
--    for (auto tracks_i = reactionPerTrackMap.begin();
--         tracks_i != reactionPerTrackMap.end();
--         tracks_i = reactionPerTrackMap.begin())
-+    
-+    // for (auto tracks_i = reactionPerTrackMap.begin(); tracks_i != reactionPerTrackMap.end(); tracks_i = reactionPerTrackMap.begin())
-+    while (!reactionPerTrackMap.empty())
-     {
--        G4Track* pTrackA = tracks_i->first;
-+        auto it = reactionPerTrackMap.begin();
-+        
-+        G4Track* pTrackA = it->first;
-         if (pTrackA->GetTrackStatus() == fStopAndKill)
-         {
-+            // Remove reactions of this track
-+            pReactionSet->RemoveReactionSet(pTrackA);
-             continue;
-         }
- 
--        G4ITReactionPerTrackPtr reactionPerTrack = tracks_i->second;
-+        G4ITReactionPerTrackPtr reactionPerTrack = it->second;
-         G4ITReactionList& reactionList = reactionPerTrack->GetReactionList();
- 
-         assert(reactionList.begin() != reactionList.end());
- 
--        for (auto it = reactionList.begin(); it != reactionList.end(); it = reactionList.begin())
-+        // for (auto it = reactionList.begin(); it != reactionList.end(); it = reactionList.begin())
-+        while (!reactionList.empty())
-         {
--            G4ITReactionPtr reaction(*it);
-+            G4ITReactionPtr reaction(*reactionList.begin());
-             G4Track* pTrackB = reaction->GetReactant(pTrackA);
-             if (pTrackB->GetTrackStatus() == fStopAndKill)
-             {
-+                // Remove reactions of this track
-+                pReactionSet->RemoveReactionSet(pTrackB);
-                 continue;
-             }
- 
 diff -ruN geant4.10.07.p03/source/processes/electromagnetic/dna/processes/src/G4DNAWaterDissociationDisplacer.cc geant4.10.07.p03-patched/source/processes/electromagnetic/dna/processes/src/G4DNAWaterDissociationDisplacer.cc
---- geant4.10.07.p03/source/processes/electromagnetic/dna/processes/src/G4DNAWaterDissociationDisplacer.cc	2021-11-19 02:25:39
-+++ geant4.10.07.p03-patched/source/processes/electromagnetic/dna/processes/src/G4DNAWaterDissociationDisplacer.cc	2022-08-19 16:37:41
+--- geant4.10.07.p03/source/processes/electromagnetic/dna/processes/src/G4DNAWaterDissociationDisplacer.cc	2021-11-18 23:25:39.000000000 -0800
++++ geant4.10.07.p03-patched/source/processes/electromagnetic/dna/processes/src/G4DNAWaterDissociationDisplacer.cc	2022-02-10 13:35:50.000000000 -0800
 @@ -169,7 +169,7 @@
      G4double RMSMotherMoleculeDisplacement(0.);
  
@@ -145,10 +87,10 @@ diff -ruN geant4.10.07.p03/source/processes/electromagnetic/dna/processes/src/G4
 +            break;*/
 +        case Ionisation_DissociationDecay:
 +            RMSMotherMoleculeDisplacement = 1.24 * nanometer; //1.45 * nanometer;//1.45 * nanometer;
-             break;
++            break;
 +        case A1B1_DissociationDecay:
 +            RMSMotherMoleculeDisplacement = 0. * nanometer;
-+            break;
+             break;
 +        case B1A1_DissociationDecay:
 +            RMSMotherMoleculeDisplacement = 0. * nanometer;
 +            break;

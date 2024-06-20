@@ -357,7 +357,7 @@ if (TOPAS_EXTENSIONS_DIR)
 					"Insertion point for Physics Modules"
 					"Insertion point for Physics Modules
 					if (physicsModuleName==\"${valuestringlower}\")
-					return new CreatorWithPm<${filename}>(pM);"
+					return new ${filename}(pM);"
 					EXT_CONTENTS "${EXT_CONTENTS}")
 
 					file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/extensions/TsExtensionManager.cc "${EXT_CONTENTS}")

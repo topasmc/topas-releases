@@ -1,4 +1,4 @@
-Installation instructions for TOPAS Version 3.10
+Installation instructions for TOPAS Version 3.9
 
 All use of TOPAS is governed by the TOPAS License Agreement provided in this directory as LICENSE.txt.
 
